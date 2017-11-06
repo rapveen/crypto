@@ -1,0 +1,23 @@
+#include <bits/stdc++.h>  using namespace std;  int modpow(int g ,int a,int p)  
+{  
+ int result=1;   while(a)  
+  	{     	 	if(a==1)  
+   	 	return (result*g)%p;     	 	if(a%2==1)  
+   	 	{  
+   	 	 	 result=result*g;     	 	 	 result=result%p;  
+   	 	}  
+  	 	 g=g*g;    	 	 g=g%p;     	 	a=a/2;  
+  	 	// cout<<result<<endl;  
+  	}  
+  	return result%p;  
+}  int main() {    	// your code goes here   int p=23;  
+  	int d=10;    	int e1=5;    	int e2=modpow(e1,d,p);    	int r=3;    	cout<<"Encryption"<<endl;     	int c1=modpow(e1,r,p);    	int M;     	cin>>M;  
+  	int c2=M*modpow(e2,r,p);    	c2=c2%p;    	cout<<c1<<" "<<c2<<endl;     	int xx=modpow(c1,d,p);    	cout<<xx<<endl;   int i;  
+  	for(i=2;i<23;i++)  
+  	{  
+  	 	 if((xx*i)%p==1)  
+  	 	 {    	 	 	  break;     	 	}  
+  	}  
+ cout<<i<<endl;  
+  	cout<<"decryption"<<endl;     	cout<<(c2*i)%p;      	return 0;  
+}      

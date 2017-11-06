@@ -1,0 +1,51 @@
+#include<bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+struct Point{
+	ll x,y;
+};
+ll inv(ll a,ll p){
+	for(int i=1;i<p;i++){
+		ll y=(a*i)%p;
+		if(y==1)return i;
+	}
+	return -1;
+}
+ll mod(ll a,ll p){
+	if(a>=0)return a%p;
+	ll x=a/p;x++;
+	a=(a+p*x)%p;
+	return a;
+}
+Point add(Point p1,Point p2,ll p){
+	ll slopeNum,slopeDen;
+	ll a=1,b=1;
+	if(p1.x==p2.x && p1.y==p2.y){
+		slopeNum=(p1.x*p1.x)%p;
+		slopeNum=(3LL*slopeNum)%p;
+		slopeNum=(slopeNum+a)%p;
+		slopeDen=mod(2LL*p1.y,p);
+	}else{
+		slopeNum=mod(p2.y-p1.y,p);
+		slopeDen=mod(p2.x-p1.x,p);
+	}
+	ll slope=mod(slopeNum*inv(slopeDen,p),p);
+	Point p3;
+	p3.x=(slope*slope)%p;
+	p3.x=mod(p3.x-p1.x-p2.x,p);
+	p3.y=mod(p1.x-p3.x,p);
+	p3.y=mod(slope*p3.y,p);
+	p3.y=mod(p3.y-p1.y,p);
+	return p3;
+}
+int main(){
+	ll p=23;
+	Point P[6];
+	P[1].x=3,P[1].y=10;
+	cout<<"P ("<<P[1].x<<","<<P[1].y<<")\n";
+	for(int i=2;i<=5;i++){
+		P[i]=add(P[i-1],P[1],p);
+		cout<<"P"<<i<<" ("<<P[i].x<<","<<P[i].y<<")\n";
+	}
+	return 0;
+}

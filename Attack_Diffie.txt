@@ -1,0 +1,23 @@
+#include <iostream>  using namespace std;  int modpow(int g ,int a,int p)  
+{  
+ int result=1;   while(a)  
+  	{     	 	if(a==1)  
+   	 	return (result*g)%p;    	 	 if(a%2==1)  
+  	 	 {  
+  	 	 	  result=result*g;    	 	 	  result=result%p;  
+  }  
+   	 	g=g*g;  
+  g=g%p;  
+   	 	a=a/2;  
+  	 	// cout<<result<<endl;  
+  	}  
+ return result%p;  
+}  int main() {  
+  	// your code goes here  
+ int p=23;  
+  	int g=5;    	int a=2;    	int b=12;  
+ int z=10;  
+  	int A=modpow(g,a,p);    	int B=modpow(g,b,p);    	int Z=modpow(g,z,p);   cout<<A<<" "<<B<<" "<<Z<<endl;  
+  	cout<<"Key A-Z "<<endl;    	int saz=modpow(A,z,p);    	cout<<saz<<endl;    	cout<<"Key Z-B "<<endl;    	int sbz=modpow(B,z,p);   cout<<sbz<<endl;  
+  	return 0;  
+}  

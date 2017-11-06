@@ -1,0 +1,19 @@
+#include <iostream>  using namespace std;  int modpow(int g ,int a,int p)  
+{  
+  	int result=1;    	while(a)  
+  	{    	 	 if(a==1)  
+  	 	 return (result*g)%p;     	 	if(a%2==1)  
+  	  	{  
+  	 	 	  result=result*g;    	 	 	  result=result%p;  
+  	 	 }  
+  g=g*g;    g=g%p;  
+  	 	 a=a/2;  
+  	 	// cout<<result<<endl;  
+  	}  
+  	return result%p;  
+}  int main() {  
+ // your code goes here  
+  	int p=23;  
+ int g=5;  
+  	int a=9;    	int b=11;    	int A=modpow(g,a,p);    	int B=modpow(g,b,p);    	cout<<A<<" "<<B<<endl;    	int sa=modpow(B,a,p);    	int sb=modpow(A,b,p);    	cout<<sa<<" "<<sb<<endl;    	return 0;  
+}    
